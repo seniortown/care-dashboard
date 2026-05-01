@@ -1,523 +1,1189 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 화성형 통합돌봄 신규사업 추진현황</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #F8F9FA;
-    --accent: #00A682;
-    --blue: #2B72B5;
-    --amber: #D98800;
-    --purple: #6258C4;
-    --text-primary: #1A1F26;
-    --text-secondary: #4A5568;
-    --text-muted: #718096;
-    --border: rgba(0,0,0,0.08);
-    --border-light: rgba(0,0,0,0.12);
-    --card-bg: #FFFFFF;
-    --card-bg-hover: #F8F9FA;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body {
-    font-family:'Noto Sans KR',sans-serif;
-    background:var(--navy);
-    color:var(--text-primary);
-    min-height:100vh;
-    background-image:
-      radial-gradient(ellipse at 20% 10%,rgba(0,166,130,0.06) 0%,transparent 50%),
-      radial-gradient(ellipse at 80% 90%,rgba(43,114,181,0.06) 0%,transparent 50%);
-  }
-  .container { max-width:1400px; margin:0 auto; padding:0 32px 80px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 화성형 통합돌봄 신규사업 추진현황</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --accent: #00C8A0;
+      --blue: #3B8FD4;
+      --amber: #F0A500;
+      --purple: #7F77DD;
+      --text-primary: #E8EDF4;
+      --text-secondary: #8A9BB4;
+      --text-muted: #526078;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-light: rgba(255, 255, 255, 0.12);
+      --card-bg: rgba(26, 46, 69, 0.6);
+      --card-bg-hover: rgba(36, 59, 85, 0.8);
+    }
 
-  /* ─── Admin Banner ─── */
-  #admin-banner {
-    display:none; background:rgba(217,136,0,0.1);
-    border-bottom:1px solid rgba(217,136,0,0.22);
-    padding:12px 32px; font-size:14px; font-weight:500;
-    color:var(--amber); letter-spacing:0.04em;
-    align-items:center; gap:10px; justify-content:center;
-  }
-  #admin-banner.on { display:flex; }
-  .bdot { width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite;flex-shrink:0; }
-  .logout-btn {
-    margin-left:12px; background:rgba(217,136,0,0.14); border:1px solid rgba(217,136,0,0.35);
-    border-radius:6px; color:var(--amber); font-size:13px; font-weight:600;
-    font-family:'Noto Sans KR',sans-serif; padding:6px 14px; cursor:pointer; transition:background .15s;
-  }
-  .logout-btn:hover { background:rgba(217,136,0,0.25); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  /* ─── Header ─── */
-  .header {
-    padding:44px 0 32px; border-bottom:1px solid var(--border);
-    margin-bottom:44px; display:flex; align-items:flex-end;
-    justify-content:space-between; flex-wrap:wrap; gap:16px;
-  }
-  .org { font-size:14px; letter-spacing:0.08em; color:var(--accent); text-transform:uppercase; margin-bottom:8px; font-weight:600;}
-  h1 { font-size:32px; font-weight:700; letter-spacing:-0.02em; line-height:1.3; }
-  h1 span { color:var(--accent); }
-  .header-right { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
-  .live-badge { display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.06em; }
-  .ldot { width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)} }
-  .date-str { font-size:14px; color:var(--text-muted); font-weight:500;}
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* 🔒 Lock Button */
-  #lock-btn {
-    display:flex; align-items:center; gap:8px;
-    background:rgba(0,0,0,0.03); border:1px solid var(--border-light);
-    border-radius:8px; color:var(--text-muted); font-size:14px; font-weight:500;
-    font-family:'Noto Sans KR',sans-serif; padding:8px 16px; cursor:pointer;
-    transition:background .2s,border-color .2s,color .2s; letter-spacing:.03em;
-  }
-  #lock-btn:hover { background:rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.15);color:var(--text-secondary); }
-  #lock-btn svg { width:15px;height:15px;fill:currentColor;flex-shrink:0; }
-  #lock-btn.admin { color:var(--amber);border-color:rgba(217,136,0,0.4);background:rgba(217,136,0,0.08); }
-  #lock-btn.admin:hover { background:rgba(217,136,0,0.16); }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--navy);
+      color: var(--text-primary);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(0, 200, 160, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(59, 143, 212, 0.06) 0%, transparent 50%);
+    }
 
-  /* ─── KPI ─── */
-  .kpi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:48px; }
-  .kpi-card {
-    background:var(--card-bg); border:1px solid var(--border); border-radius:16px;
-    padding:24px 28px; position:relative; overflow:hidden;
-    transition:border-color .25s,background .25s;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
-  }
-  .kpi-card::before { content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--bar-color,var(--accent)); }
-  .kpi-card:hover { background:var(--card-bg-hover);border-color:var(--border-light); transform:translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
-  .kpi-label { font-size:14px;color:var(--text-secondary);letter-spacing:.04em;margin-bottom:12px; font-weight:600;}
-  .kpi-value { font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1; }
-  .kpi-value span { font-size:16px;font-weight:500;color:var(--text-muted);margin-left:4px; }
-  .kpi-sub { font-size:13px;color:var(--text-muted);margin-top:8px; font-weight:500;}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px 64px;
+    }
 
-  /* ─── Overall Bar ─── */
-  .obar-wrap { background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:26px 32px;margin-bottom:48px; box-shadow: 0 4px 16px rgba(0,0,0,0.02);}
-  .obar-header { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px; }
-  .obar-header h2 { font-size:16px;font-weight:600;color:var(--text-secondary);letter-spacing:.04em; }
-  .obar-header .pct { font-size:26px;font-weight:700;color:var(--accent); }
-  .btrack { height:14px;background:rgba(0,0,0,0.06);border-radius:99px;overflow:hidden; }
-  .bfill { height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--blue));transition:width .8s cubic-bezier(.4,0,.2,1); }
+    /* ─── Admin Banner ─── */
+    #admin-banner {
+      display: none;
+      background: rgba(240, 165, 0, 0.1);
+      border-bottom: 1px solid rgba(240, 165, 0, 0.22);
+      padding: 9px 32px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--amber);
+      letter-spacing: 0.04em;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
 
-  /* ─── Section title ─── */
-  .stitle {
-    font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--text-muted);margin-bottom:20px;display:flex;align-items:center;gap:12px;
-  }
-  .stitle::after { content:'';flex:1;height:2px;background:var(--border); }
+    #admin-banner.on {
+      display: flex;
+    }
 
-  /* ─── Table ─── */
-  .twrap { background:var(--card-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:56px;overflow-x:auto; box-shadow: 0 4px 16px rgba(0,0,0,0.02);}
-  table { width:100%;border-collapse:collapse;font-size:15px;min-width:700px; }
-  thead tr { background:rgba(0,0,0,0.02);border-bottom:1px solid var(--border-light); }
-  thead th { padding:16px 20px;text-align:left;font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--text-muted);white-space:nowrap; }
-  thead th.r { text-align:right; }
-  tbody tr { border-bottom:1px solid var(--border);transition:background .15s; }
-  tbody tr:last-child { border-bottom:none; }
-  tbody tr:hover { background:rgba(0,0,0,0.015); }
-  tbody td { padding:16px 20px;vertical-align:middle; }
-  tbody td.r { text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums; font-weight:500;}
-  .fbadge { display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;font-size:13px;font-weight:600;white-space:nowrap; }
-  .tbwrap { display:flex;align-items:center;gap:12px; }
-  .tbtrack { flex:1;height:10px;background:rgba(0,0,0,0.08);border-radius:99px;overflow:hidden;min-width:80px; }
-  .tbfill { height:100%;border-radius:99px;transition:width .6s ease; }
-  .tpct { font-size:14px;font-weight:700;min-width:44px;text-align:right;font-variant-numeric:tabular-nums; }
-  .tblinput {
-    background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.15);border-radius:8px;
-    color:var(--text-primary);font-size:15px;font-family:'Noto Sans KR',sans-serif;
-    padding:8px 12px;width:84px;text-align:right;transition:border-color .2s,background .2s;
-  }
-  .tblinput:focus { outline:none;border-color:var(--accent);background:rgba(0,166,130,0.06); }
-  .unit { font-size:13px;color:var(--text-muted);white-space:nowrap; font-weight:500;}
-  .donebadge { display:inline-flex;align-items:center;background:rgba(0,166,130,0.12);color:var(--accent);border-radius:99px;font-size:12px;font-weight:700;padding:4px 10px;letter-spacing:.04em; }
-  tfoot tr { background:rgba(0,0,0,0.02);border-top:1px solid var(--border-light); }
-  tfoot td { padding:16px 20px;font-size:14px;font-weight:700;color:var(--text-secondary); }
+    .bdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
 
-  /* ─── Cards ─── */
-  .fsec { margin-bottom:44px; }
-  .fhdr { display:flex;align-items:center;gap:14px;margin-bottom:16px; }
-  .flbl { font-size:14px;font-weight:700;padding:6px 16px;border-radius:99px;letter-spacing:.04em; }
-  .fcards { display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px; }
-  .pcard {
-    background:var(--card-bg);border:1px solid var(--border);border-radius:16px;
-    padding:24px 26px;transition:border-color .2s,transform .2s,background .2s;
-    position:relative;overflow:hidden;animation:fiu .4s ease both;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
-  }
-  .pcard:hover { border-color:var(--border-light);background:var(--card-bg-hover);transform:translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.05);}
-  .pcard::after { content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--fc,var(--accent));border-radius:0 2px 2px 0; }
-  .ptop { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:10px; }
-  .pname { font-size:18px;font-weight:700;line-height:1.3; }
-  .pdesc { font-size:13px;color:var(--text-muted);margin-top:6px;line-height:1.4; font-weight:500;}
-  .ptgt { text-align:right;flex-shrink:0; }
-  .ptgt-v { font-size:14px;color:var(--text-secondary);white-space:nowrap; }
-  .ptgt-v strong { color:var(--text-primary);font-weight:700; }
-  .pbgt { font-size:12px;color:var(--text-muted);margin-top:4px; font-weight:500;}
-  .pbarwrap { margin-bottom:16px; }
-  .pbartrack { height:10px;background:rgba(0,0,0,0.06);border-radius:99px;overflow:hidden;margin-bottom:8px; }
-  .pbarfill { height:100%;border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1); }
-  .pbarmeta { display:flex;justify-content:space-between;font-size:13px; }
-  .pcur { color:var(--text-secondary); font-weight:600;}
-  .ppct { font-weight:700; }
-  .pinrow { display:flex;align-items:center;gap:10px; }
-  .pinput {
-    flex:1;background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.15);
-    border-radius:8px;color:var(--text-primary);font-size:15px;
-    font-family:'Noto Sans KR',sans-serif;padding:9px 12px;
-    transition:border-color .2s,background .2s;min-width:0;
-  }
-  .pinput:focus { outline:none;border-color:var(--accent);background:rgba(0,166,130,0.06); }
-  .pbtn {
-    background:rgba(0,166,130,0.1);border:1px solid rgba(0,166,130,0.3);
-    border-radius:8px;color:var(--accent);font-size:14px;font-weight:600;
-    font-family:'Noto Sans KR',sans-serif;padding:9px 16px;cursor:pointer;
-    white-space:nowrap;transition:background .15s,border-color .15s;
-  }
-  .pbtn:hover { background:rgba(0,166,130,0.18);border-color:rgba(0,166,130,0.4); }
-  .pbtn:active { transform:scale(.97); }
+    .logout-btn {
+      margin-left: 12px;
+      background: rgba(240, 165, 0, 0.14);
+      border: 1px solid rgba(240, 165, 0, 0.35);
+      border-radius: 6px;
+      color: var(--amber);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: background .15s;
+    }
 
-  /* ─── Modal ─── */
-  .moverlay {
-    display:none;position:fixed;inset:0;z-index:500;
-    background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);
-    align-items:center;justify-content:center;
-  }
-  .moverlay.open { display:flex; }
-  .mbox {
-    background:var(--card-bg);border:1px solid var(--border-light);
-    border-radius:24px;padding:48px 52px;width:100%;max-width:400px;
-    text-align:center;animation:mpop .25s cubic-bezier(.34,1.56,.64,1) both;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-  }
-  @keyframes mpop { from{opacity:0;transform:scale(.88) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
-  .micon {
-    width:64px;height:64px;margin:0 auto 24px;
-    background:rgba(0,166,130,0.1);border:1px solid rgba(0,166,130,0.22);
-    border-radius:50%;display:flex;align-items:center;justify-content:center;
-  }
-  .micon svg { width:28px;height:28px;fill:var(--accent); }
-  .mtitle { font-size:22px;font-weight:700;margin-bottom:8px; }
-  .msub { font-size:14px;color:var(--text-muted);margin-bottom:32px;line-height:1.7; font-weight:500;}
-  .minput {
-    width:100%;background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.15);
-    border-radius:12px;color:var(--text-primary);font-size:22px;
-    font-family:'Noto Sans KR',sans-serif;padding:16px 20px;text-align:center;
-    letter-spacing:.3em;margin-bottom:12px;transition:border-color .2s,background .2s;
-  }
-  .minput:focus { outline:none;border-color:var(--accent);background:rgba(0,166,130,0.06); }
-  .minput.err { border-color:#E24B4A;background:rgba(226,75,74,0.08);animation:shake .35s ease; }
-  @keyframes shake { 0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)} }
-  .merr { font-size:13px;color:#E24B4A;margin-bottom:16px;min-height:20px; font-weight:600;}
-  .mbtn {
-    width:100%;background:rgba(0,166,130,0.12);border:1px solid rgba(0,166,130,0.3);
-    border-radius:12px;color:var(--accent);font-size:16px;font-weight:700;
-    font-family:'Noto Sans KR',sans-serif;padding:16px;cursor:pointer;
-    transition:background .15s;margin-bottom:12px;
-  }
-  .mbtn:hover { background:rgba(0,166,130,0.2); }
-  .mcancel {
-    background:none;border:none;color:var(--text-muted);font-size:14px;
-    font-family:'Noto Sans KR',sans-serif;cursor:pointer;padding:8px;transition:color .15s; font-weight:600;
-  }
-  .mcancel:hover { color:var(--text-secondary); }
+    .logout-btn:hover {
+      background: rgba(240, 165, 0, 0.25);
+    }
 
-  /* ─── Toast ─── */
-  #toast {
-    position:fixed;bottom:40px;left:50%;transform:translateX(-50%) translateY(20px);
-    background:var(--accent);color:#FFFFFF;font-size:14px;font-weight:700;
-    padding:12px 26px;border-radius:99px;opacity:0;pointer-events:none;
-    transition:opacity .3s,transform .3s;z-index:1000;
-    box-shadow: 0 4px 12px rgba(0,166,130,0.3);
-  }
-  #toast.on { opacity:1;transform:translateX(-50%) translateY(0); }
+    /* ─── Header ─── */
+    .header {
+      padding: 36px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
 
-  .footer { text-align:center;padding-top:32px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);letter-spacing:.04em; font-weight:500;}
-  @keyframes fiu { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-  ::-webkit-scrollbar { width:8px; }
-  ::-webkit-scrollbar-track { background:var(--navy); }
-  ::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.15);border-radius:4px; }
-</style>
+    .org {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+
+    .ldot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(.8)
+      }
+    }
+
+    .date-str {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* 🔒 Lock Button */
+    #lock-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      letter-spacing: .03em;
+    }
+
+    #lock-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--text-secondary);
+    }
+
+    #lock-btn svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    #lock-btn.admin {
+      color: var(--amber);
+      border-color: rgba(240, 165, 0, 0.4);
+      background: rgba(240, 165, 0, 0.08);
+    }
+
+    #lock-btn.admin:hover {
+      background: rgba(240, 165, 0, 0.16);
+    }
+
+    /* ─── KPI ─── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s, background .25s;
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--bar-color, var(--accent));
+    }
+
+    .kpi-card:hover {
+      background: var(--card-bg-hover);
+      border-color: var(--border-light);
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+
+    .kpi-value span {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 3px;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ─── Overall Bar ─── */
+    .obar-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 40px;
+    }
+
+    .obar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    .obar-header h2 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: .04em;
+    }
+
+    .obar-header .pct {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .btrack {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bfill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+      transition: width .8s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    /* ─── Section title ─── */
+    .stitle {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stitle::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── Table ─── */
+    .twrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 48px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      min-width: 600px;
+    }
+
+    thead tr {
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    thead th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    thead th.r {
+      text-align: right;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    tbody td {
+      padding: 12px 16px;
+      vertical-align: middle;
+    }
+
+    tbody td.r {
+      text-align: right;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .fbadge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tbwrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tbtrack {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 99px;
+      overflow: hidden;
+      min-width: 60px;
+    }
+
+    .tbfill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width .6s ease;
+    }
+
+    .tpct {
+      font-size: 12px;
+      font-weight: 600;
+      min-width: 38px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tblinput {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 6px 10px;
+      width: 72px;
+      text-align: right;
+      transition: border-color .2s, background .2s;
+    }
+
+    .tblinput:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(0, 200, 160, 0.08);
+    }
+
+    .unit {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .donebadge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 200, 160, 0.15);
+      color: var(--accent);
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      letter-spacing: .04em;
+    }
+
+    tfoot tr {
+      background: rgba(255, 255, 255, 0.04);
+      border-top: 1px solid var(--border-light);
+    }
+
+    tfoot td {
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Cards ─── */
+    .fsec {
+      margin-bottom: 36px;
+    }
+
+    .fhdr {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .flbl {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 99px;
+      letter-spacing: .04em;
+    }
+
+    .fcards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .pcard {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: border-color .2s, transform .2s, background .2s;
+      position: relative;
+      overflow: hidden;
+      animation: fiu .4s ease both;
+    }
+
+    .pcard:hover {
+      border-color: var(--border-light);
+      background: var(--card-bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .pcard::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--fc, var(--accent));
+      border-radius: 0 2px 2px 0;
+    }
+
+    .ptop {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .pname {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .pdesc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .ptgt {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .ptgt-v {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .ptgt-v strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .pbgt {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .pbarwrap {
+      margin-bottom: 12px;
+    }
+
+    .pbartrack {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+
+    .pbarfill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width .6s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .pbarmeta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+    }
+
+    .pcur {
+      color: var(--text-secondary);
+    }
+
+    .ppct {
+      font-weight: 600;
+    }
+
+    .pinrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pinput {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 7px 10px;
+      transition: border-color .2s, background .2s;
+      min-width: 0;
+    }
+
+    .pinput:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(0, 200, 160, 0.08);
+    }
+
+    .pbtn {
+      background: rgba(0, 200, 160, 0.12);
+      border: 1px solid rgba(0, 200, 160, 0.3);
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 7px 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s, border-color .15s;
+    }
+
+    .pbtn:hover {
+      background: rgba(0, 200, 160, 0.2);
+      border-color: rgba(0, 200, 160, 0.5);
+    }
+
+    .pbtn:active {
+      transform: scale(.97);
+    }
+
+    /* ─── Modal ─── */
+    .moverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(7, 16, 27, 0.88);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .moverlay.open {
+      display: flex;
+    }
+
+    .mbox {
+      background: #1A2E45;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 22px;
+      padding: 44px 48px;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+      animation: mpop .25s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    @keyframes mpop {
+      from {
+        opacity: 0;
+        transform: scale(.88) translateY(12px)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0)
+      }
+    }
+
+    .micon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 22px;
+      background: rgba(0, 200, 160, 0.1);
+      border: 1px solid rgba(0, 200, 160, 0.22);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .micon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--accent);
+    }
+
+    .mtitle {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .msub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .minput {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: 18px;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 14px 16px;
+      text-align: center;
+      letter-spacing: .3em;
+      margin-bottom: 10px;
+      transition: border-color .2s, background .2s;
+    }
+
+    .minput:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(0, 200, 160, 0.08);
+    }
+
+    .minput.err {
+      border-color: #E24B4A;
+      background: rgba(226, 75, 74, 0.08);
+      animation: shake .35s ease;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      20%,
+      60% {
+        transform: translateX(-8px)
+      }
+
+      40%,
+      80% {
+        transform: translateX(8px)
+      }
+    }
+
+    .merr {
+      font-size: 12px;
+      color: #E24B4A;
+      margin-bottom: 12px;
+      min-height: 18px;
+    }
+
+    .mbtn {
+      width: 100%;
+      background: rgba(0, 200, 160, 0.14);
+      border: 1px solid rgba(0, 200, 160, 0.4);
+      border-radius: 10px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 14px;
+      cursor: pointer;
+      transition: background .15s;
+      margin-bottom: 10px;
+    }
+
+    .mbtn:hover {
+      background: rgba(0, 200, 160, 0.25);
+    }
+
+    .mcancel {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      padding: 6px;
+      transition: color .15s;
+    }
+
+    .mcancel:hover {
+      color: var(--text-secondary);
+    }
+
+    /* ─── Toast ─── */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent);
+      color: #0D1B2A;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 99px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 1000;
+    }
+
+    #toast.on {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+    }
+
+    @keyframes fiu {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--navy);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 3px;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Admin Banner -->
-<div id="admin-banner">
-  <span class="bdot"></span>
-  관리자 모드 활성화 — 실적 수정 가능
-  <button class="logout-btn" onclick="logout()">잠금</button>
-</div>
-
-<!-- Password Modal -->
-<div class="moverlay" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="mbox">
-    <div class="micon">
-      <svg viewBox="0 0 24 24"><path d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 00-1 1v13a1 1 0 001 1h16a1 1 0 001-1V9a1 1 0 00-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 110 4 2 2 0 010-4z"/></svg>
-    </div>
-    <div class="mtitle">관리자 로그인</div>
-    <div class="msub">실적 수정 권한을 위해<br>비밀번호를 입력하세요</div>
-    <input class="minput" type="password" id="pw" placeholder="••••••••"
-      onkeydown="if(event.key==='Enter')tryLogin()"
-      oninput="document.getElementById('perr').textContent='';this.classList.remove('err')">
-    <div class="merr" id="perr"></div>
-    <button class="mbtn" onclick="tryLogin()">확인</button>
-    <button class="mcancel" onclick="closeModal()">취소</button>
+  <!-- Admin Banner -->
+  <div id="admin-banner">
+    <span class="bdot"></span>
+    관리자 모드 활성화 — 실적 수정 가능
+    <button class="logout-btn" onclick="logout()">잠금</button>
   </div>
-</div>
 
-<div class="container">
-
-  <header class="header">
-    <div>
-      <p class="org">화성특례시 통합돌봄과</p>
-      <h1>2026 화성형 <span>통합돌봄</span><br>신규사업 추진현황</h1>
-    </div>
-    <div class="header-right">
-      <div class="live-badge"><span class="ldot"></span>LIVE DASHBOARD</div>
-      <div class="date-str" id="dstr"></div>
-      <button id="lock-btn" onclick="handleLock()">
-        <svg id="licon" viewBox="0 0 24 24"><path d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 00-1 1v13a1 1 0 001 1h16a1 1 0 001-1V9a1 1 0 00-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 110 4 2 2 0 010-4z"/></svg>
-        <span id="llbl">관리자 로그인</span>
-      </button>
-    </div>
-  </header>
-
-  <div class="kpi-grid">
-    <div class="kpi-card" style="--bar-color:var(--accent)">
-      <div class="kpi-label">총 사업 수</div>
-      <div class="kpi-value">13<span>개</span></div>
-      <div class="kpi-sub">2026년 신규 편성</div>
-    </div>
-    <div class="kpi-card" style="--bar-color:var(--blue)">
-      <div class="kpi-label">완료 사업</div>
-      <div class="kpi-value" id="kdone">0<span>/ 13</span></div>
-      <div class="kpi-sub" id="kdsub">진행 중</div>
-    </div>
-    <div class="kpi-card" style="--bar-color:var(--amber)">
-      <div class="kpi-label">평균 달성률</div>
-      <div class="kpi-value" id="kpct">0<span>%</span></div>
-      <div class="kpi-sub" id="kpsub">실적 입력 대기</div>
-    </div>
-    <div class="kpi-card" style="--bar-color:var(--purple)">
-      <div class="kpi-label">총 예산</div>
-      <div class="kpi-value">26.4<span>억원</span></div>
-      <div class="kpi-sub">2,639,287 천원</div>
+  <!-- Password Modal -->
+  <div class="moverlay" id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="mbox">
+      <div class="micon">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 00-1 1v13a1 1 0 001 1h16a1 1 0 001-1V9a1 1 0 00-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 110 4 2 2 0 010-4z" />
+        </svg>
+      </div>
+      <div class="mtitle">관리자 로그인</div>
+      <div class="msub">실적 수정 권한을 위해<br>비밀번호를 입력하세요</div>
+      <input class="minput" type="password" id="pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryLogin()"
+        oninput="document.getElementById('perr').textContent='';this.classList.remove('err')">
+      <div class="merr" id="perr"></div>
+      <button class="mbtn" onclick="tryLogin()">확인</button>
+      <button class="mcancel" onclick="closeModal()">취소</button>
     </div>
   </div>
 
-  <div class="obar-wrap">
-    <div class="obar-header">
-      <h2>전체 평균 진행률</h2>
-      <span class="pct" id="opct">0%</span>
-    </div>
-    <div class="btrack"><div class="bfill" id="obar" style="width:0%"></div></div>
-  </div>
+  <div class="container">
 
-  <p class="stitle">총괄 현황표</p>
-  <div class="twrap">
-    <table>
-      <thead>
-        <tr>
-          <th style="width:32px">No.</th>
-          <th>분야</th>
-          <th>사업명</th>
-          <th class="r">사업량</th>
-          <th>추진건수</th>
-          <th style="min-width:160px">진행률</th>
-          <th style="width:60px">상태</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" style="font-size:11px;color:var(--text-muted);">합계 / 평균</td>
-          <td class="r" id="ttgt"></td>
-          <td id="tcur" style="padding-left:16px;"></td>
-          <td colspan="2">
-            <div class="tbwrap">
-              <div class="tbtrack" style="min-width:80px">
-                <div class="tbfill" id="tbar" style="width:0%;background:var(--accent);"></div>
+    <header class="header">
+      <div>
+        <p class="org">화성특례시 통합돌봄과</p>
+        <h1>2026 화성형 <span>통합돌봄</span><br>신규사업 추진현황</h1>
+      </div>
+      <div class="header-right">
+        <div class="live-badge"><span class="ldot"></span>LIVE DASHBOARD</div>
+        <div class="date-str" id="dstr"></div>
+        <button id="lock-btn" onclick="handleLock()">
+          <svg id="licon" viewBox="0 0 24 24">
+            <path
+              d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 00-1 1v13a1 1 0 001 1h16a1 1 0 001-1V9a1 1 0 00-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 110 4 2 2 0 010-4z" />
+          </svg>
+          <span id="llbl">관리자 로그인</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="kpi-grid">
+      <div class="kpi-card" style="--bar-color:var(--accent)">
+        <div class="kpi-label">총 사업 수</div>
+        <div class="kpi-value">13<span>개</span></div>
+        <div class="kpi-sub">2026년 신규 편성</div>
+      </div>
+      <div class="kpi-card" style="--bar-color:var(--blue)">
+        <div class="kpi-label">완료 사업</div>
+        <div class="kpi-value" id="kdone">0<span>/ 13</span></div>
+        <div class="kpi-sub" id="kdsub">진행 중</div>
+      </div>
+      <div class="kpi-card" style="--bar-color:var(--amber)">
+        <div class="kpi-label">평균 달성률</div>
+        <div class="kpi-value" id="kpct">0<span>%</span></div>
+        <div class="kpi-sub" id="kpsub">실적 입력 대기</div>
+      </div>
+      <div class="kpi-card" style="--bar-color:var(--purple)">
+        <div class="kpi-label">총 예산</div>
+        <div class="kpi-value">26.4<span>억원</span></div>
+        <div class="kpi-sub">2,639,287 천원</div>
+      </div>
+    </div>
+
+    <div class="obar-wrap">
+      <div class="obar-header">
+        <h2>전체 평균 진행률</h2>
+        <span class="pct" id="opct">0%</span>
+      </div>
+      <div class="btrack">
+        <div class="bfill" id="obar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <p class="stitle">총괄 현황표</p>
+    <div class="twrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:32px">No.</th>
+            <th>분야</th>
+            <th>사업명</th>
+            <th class="r">사업량</th>
+            <th>추진건수</th>
+            <th style="min-width:160px">진행률</th>
+            <th style="width:60px">상태</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" style="font-size:11px;color:var(--text-muted);">합계 / 평균</td>
+            <td class="r" id="ttgt"></td>
+            <td id="tcur" style="padding-left:16px;"></td>
+            <td colspan="2">
+              <div class="tbwrap">
+                <div class="tbtrack" style="min-width:80px">
+                  <div class="tbfill" id="tbar" style="width:0%;background:var(--accent);"></div>
+                </div>
+                <span class="tpct" id="tpct" style="color:var(--accent)">0%</span>
               </div>
-              <span class="tpct" id="tpct" style="color:var(--accent)">0%</span>
-            </div>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <p class="stitle">분야별 사업 현황</p>
+    <div id="dash"></div>
+
+    <div class="footer">
+      열람 전용 페이지 &nbsp;·&nbsp; 화성특례시 통합돌봄과 &nbsp;·&nbsp; <span id="fdate"></span>
+    </div>
   </div>
 
-  <p class="stitle">분야별 사업 현황</p>
-  <div id="dash"></div>
+  <div id="toast"></div>
 
-  <div class="footer">
-    열람 전용 페이지 &nbsp;·&nbsp; 화성특례시 통합돌봄과 &nbsp;·&nbsp; <span id="fdate"></span>
-  </div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ▶ 비밀번호 변경 방법
+    //   브라우저 콘솔에서: btoa('새비밀번호')  를 실행한 뒤
+    //   아래 PW_HASH 값을 결과로 교체하세요.
+    //   현재 기본 비밀번호: hscare2026
+    const PW_HASH = 'aHNjYXJlMjAyNg==';
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<div id="toast"></div>
+    const PROJ = [
+      { id: 1, f: "보건의료", name: "방문한방돌봄", desc: "65세 이상 의료취약계층 한의사 방문진료", t: 180, u: "명", b: 70000 },
+      { id: 2, f: "보건의료", name: "퇴원환자 연계지원", desc: "퇴원환자 지역사회 연계 수당지원(5만원)", t: 300, u: "명", b: 15000 },
+      { id: 3, f: "보건의료", name: "방문돌봄 주치의", desc: "재택의료센터 물리치료사 인건비 지원", t: 3, u: "개소", b: 140000 },
+      { id: 4, f: "보건의료", name: "방문약물관리", desc: "약사 가정 방문 복약지도 및 상담", t: 200, u: "명", b: 170000 },
+      { id: 5, f: "건강관리", name: "통증완화케어교육", desc: "만성 통증대상자 집단·개별 프로그램", t: 2, u: "개소", b: 50000 },
+      { id: 6, f: "장기요양", name: "간호요양 원스톱패키지", desc: "방문간호·요양·목욕 3대 재가서비스", t: 150, u: "명", b: 188000 },
+      { id: 7, f: "일상돌봄", name: "화성형 통합돌봄지원", desc: "화성형 돌봄패키지 지원(1인 60만원)", t: 116, u: "명", b: 70000 },
+      { id: 8, f: "일상돌봄", name: "통합재가서비스", desc: "4대 화성시 돌봄패키지(1인 100만원)", t: 170, u: "명", b: 170000 },
+      { id: 9, f: "일상돌봄", name: "AI디지털돌봄", desc: "케어안심주택 위험감지 센서 지원", t: 20, u: "호", b: 12000 },
+      { id: 10, f: "일상돌봄", name: "AIP코디네이터", desc: "권역별 전담 코디네이터 4개소 배치", t: 800, u: "명", b: 652000 },
+      { id: 11, f: "주거지원", name: "주거안심회복주택", desc: "LH국민임대주택 회복주택 운영", t: 5, u: "호", b: 139287 },
+      { id: 12, f: "주거지원", name: "주거환경개선", desc: "문턱 제거·안전바 등 집수리 지원", t: 163, u: "가구", b: 283000 },
+      { id: 13, f: "주거지원", name: "케어안심주택", desc: "GH 특화형 매입임대주택 24호 운영", t: 24, u: "호", b: 680000 },
+    ];
+    const FIELDS = ["보건의료", "건강관리", "장기요양", "일상돌봄", "주거지원"];
+    const C = {
+      "보건의료": { c: "#3B8FD4", bg: "rgba(59,143,212,.15)", bd: "rgba(59,143,212,.35)" },
+      "건강관리": { c: "#1D9E75", bg: "rgba(29,158,117,.15)", bd: "rgba(29,158,117,.35)" },
+      "장기요양": { c: "#F0A500", bg: "rgba(240,165,0,.15)", bd: "rgba(240,165,0,.35)" },
+      "일상돌봄": { c: "#00C8A0", bg: "rgba(0,200,160,.15)", bd: "rgba(0,200,160,.35)" },
+      "주거지원": { c: "#7F77DD", bg: "rgba(127,119,221,.15)", bd: "rgba(127,119,221,.35)" },
+    };
 
-<script>
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// ▶ 비밀번호 변경 방법
-//   브라우저 콘솔에서: btoa('새비밀번호')  를 실행한 뒤
-//   아래 PW_HASH 값을 결과로 교체하세요.
-//   현재 기본 비밀번호: hscare2026
-const PW_HASH = 'aHNjYXJlMjAyNg==';
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    let prog = {}, admin = false;
 
-const PROJ = [
-  {id:1,  f:"보건의료",name:"방문한방돌봄",          desc:"65세 이상 의료취약계층 한의사 방문진료",  t:180,  u:"명",  b:70000  },
-  {id:2,  f:"보건의료",name:"퇴원환자 연계지원",     desc:"퇴원환자 지역사회 연계 수당지원(5만원)",  t:300,  u:"명",  b:15000  },
-  {id:3,  f:"보건의료",name:"방문돌봄 주치의",       desc:"재택의료센터 물리치료사 인건비 지원",     t:3,    u:"개소",b:140000 },
-  {id:4,  f:"보건의료",name:"방문약물관리",          desc:"약사 가정 방문 복약지도 및 상담",         t:200,  u:"명",  b:170000 },
-  {id:5,  f:"건강관리",name:"통증완화케어교육",      desc:"만성 통증대상자 집단·개별 프로그램",      t:2,    u:"개소",b:50000  },
-  {id:6,  f:"장기요양",name:"간호요양 원스톱패키지", desc:"방문간호·요양·목욕 3대 재가서비스",       t:150,  u:"명",  b:188000 },
-  {id:7,  f:"일상돌봄",name:"화성형 통합돌봄지원",  desc:"화성형 돌봄패키지 지원(1인 60만원)",      t:116,  u:"명",  b:70000  },
-  {id:8,  f:"일상돌봄",name:"통합재가서비스",        desc:"4대 화성시 돌봄패키지(1인 100만원)",      t:170,  u:"명",  b:170000 },
-  {id:9,  f:"일상돌봄",name:"AI디지털돌봄",          desc:"케어안심주택 위험감지 센서 지원",         t:20,   u:"호",  b:12000  },
-  {id:10, f:"일상돌봄",name:"AIP코디네이터",         desc:"권역별 전담 코디네이터 4개소 배치",       t:800,  u:"명",  b:652000 },
-  {id:11, f:"주거지원",name:"주거안심회복주택",      desc:"LH국민임대주택 회복주택 운영",            t:5,    u:"호",  b:139287 },
-  {id:12, f:"주거지원",name:"주거환경개선",          desc:"문턱 제거·안전바 등 집수리 지원",         t:163,  u:"가구",b:283000 },
-  {id:13, f:"주거지원",name:"케어안심주택",          desc:"GH 특화형 매입임대주택 24호 운영",        t:24,   u:"호",  b:680000 },
-];
-const FIELDS = ["보건의료","건강관리","장기요양","일상돌봄","주거지원"];
-const C = {
-  "보건의료":{c:"#2B72B5",bg:"rgba(43,114,181,.15)",bd:"rgba(43,114,181,.35)"},
-  "건강관리":{c:"#15805E",bg:"rgba(21,128,94,.15)",bd:"rgba(21,128,94,.35)"},
-  "장기요양":{c:"#D98800",bg:"rgba(217,136,0,.15)", bd:"rgba(217,136,0,.35)"},
-  "일상돌봄":{c:"#00A682",bg:"rgba(0,166,130,.15)", bd:"rgba(0,166,130,.35)"},
-  "주거지원":{c:"#6258C4",bg:"rgba(98,88,196,.15)",bd:"rgba(98,88,196,.35)"},
-};
+    // ── Supabase Setup ──
+    const supabaseUrl = 'https://guihcdtahtwsnhvbcjff.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1aWhjZHRhaHR3c25odmJjamZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MDEzOTgsImV4cCI6MjA5MjE3NzM5OH0.dwGmSa1689dyO_zSpduA3TtALPmaimMywgUm6EQq5F0';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-let prog = {}, admin = false;
+    async function load() {
+      try {
+        const { data, error } = await supabase.from('dashboard_data').select('data').eq('id', 1).single();
+        if (data && data.data) {
+          prog = data.data;
+        } else {
+          // 기존 로컬 데이터가 있으면 마이그레이션
+          const localData = localStorage.getItem('care2026');
+          if (localData) { prog = JSON.parse(localData); await save(); }
+        }
+      } catch (e) { console.error("데이터 로드 에러:", e); }
+    }
 
-function load() { try { prog = JSON.parse(localStorage.getItem('care2026')||'{}'); } catch(e){} }
-function save() { localStorage.setItem('care2026', JSON.stringify(prog)); toast('저장되었습니다'); }
-function pct(p) { return Math.min(100,((prog[p.id]||0)/p.t)*100); }
+    async function save() {
+      try {
+        const { error } = await supabase.from('dashboard_data').update({ data: prog }).eq('id', 1);
+        if (!error) toast('저장되었습니다');
+        else { console.error(error); toast('DB에 저장하지 못했습니다. 설정을 확인해주세요.'); }
+      } catch (e) { console.error("저장 에러:", e); }
+    }
 
-// ── Auth ──
-function handleLock() { admin ? logout() : openModal(); }
-function openModal() {
-  document.getElementById('modal').classList.add('open');
-  setTimeout(()=>document.getElementById('pw').focus(),60);
-}
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.getElementById('pw').value='';
-  document.getElementById('perr').textContent='';
-  document.getElementById('pw').classList.remove('err');
-}
-function tryLogin() {
-  const v = document.getElementById('pw').value;
-  if (btoa(v) === PW_HASH) {
-    admin = true;
-    sessionStorage.setItem('adm','1');
-    closeModal();
-    applyMode();
-    toast('관리자 모드 활성화');
-  } else {
-    document.getElementById('perr').textContent = '비밀번호가 올바르지 않습니다';
-    const el = document.getElementById('pw');
-    el.classList.add('err');
-    el.value = '';
-    setTimeout(()=>el.classList.remove('err'),500);
-  }
-}
-function logout() {
-  admin = false;
-  sessionStorage.removeItem('adm');
-  applyMode();
-  toast('잠금되었습니다');
-}
-function applyMode() {
-  const btn = document.getElementById('lock-btn');
-  const ban = document.getElementById('admin-banner');
-  document.getElementById('llbl').textContent = admin ? '잠금' : '관리자 로그인';
-  btn.classList.toggle('admin', admin);
-  ban.classList.toggle('on', admin);
-  document.getElementById('licon').innerHTML = admin
-    ? '<path d="M18 8h-1V6A5 5 0 007 6v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3.1-9H8.9V6a3.1 3.1 0 016.2 0v2z"/>'
-    : '<path d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 00-1 1v13a1 1 0 001 1h16a1 1 0 001-1V9a1 1 0 00-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 110 4 2 2 0 010-4z"/>';
-  render();
-}
+    function pct(p) { return Math.min(100, ((prog[p.id] || 0) / p.t) * 100); }
 
-// ── KPI ──
-function updateKPI() {
-  const done = PROJ.filter(p=>(prog[p.id]||0)>=p.t).length;
-  const avg  = PROJ.reduce((s,p)=>s+pct(p),0)/PROJ.length;
-  const ent  = PROJ.filter(p=>(prog[p.id]||0)>0).length;
-  document.getElementById('kdone').innerHTML=`${done}<span>/ 13</span>`;
-  document.getElementById('kdsub').textContent=done===13?'모든 사업 완료':`${13-done}개 사업 진행 중`;
-  document.getElementById('kpct').innerHTML=`${avg.toFixed(1)}<span>%</span>`;
-  document.getElementById('kpsub').textContent=`${ent}개 사업 실적 입력됨`;
-  document.getElementById('opct').textContent=avg.toFixed(1)+'%';
-  document.getElementById('obar').style.width=avg.toFixed(1)+'%';
-}
-function updateFooter() {
-  const tt = PROJ.reduce((s,p)=>s+p.t,0);
-  const tc = PROJ.reduce((s,p)=>s+(prog[p.id]||0),0);
-  const av = PROJ.reduce((s,p)=>s+pct(p),0)/PROJ.length;
-  document.getElementById('ttgt').textContent=tt.toLocaleString();
-  document.getElementById('tcur').innerHTML=`<span style="font-size:13px;color:var(--accent);font-weight:600;">${tc.toLocaleString()}</span>`;
-  document.getElementById('tbar').style.width=av.toFixed(1)+'%';
-  document.getElementById('tpct').textContent=av.toFixed(1)+'%';
-}
+    // ── Auth ──
+    function handleLock() { admin ? logout() : openModal(); }
+    function openModal() {
+      document.getElementById('modal').classList.add('open');
+      setTimeout(() => document.getElementById('pw').focus(), 60);
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.getElementById('pw').value = '';
+      document.getElementById('perr').textContent = '';
+      document.getElementById('pw').classList.remove('err');
+    }
+    function tryLogin() {
+      const v = document.getElementById('pw').value;
+      if (btoa(v) === PW_HASH) {
+        admin = true;
+        sessionStorage.setItem('adm', '1');
+        closeModal();
+        applyMode();
+        toast('관리자 모드 활성화');
+      } else {
+        document.getElementById('perr').textContent = '비밀번호가 올바르지 않습니다';
+        const el = document.getElementById('pw');
+        el.classList.add('err');
+        el.value = '';
+        setTimeout(() => el.classList.remove('err'), 500);
+      }
+    }
+    function logout() {
+      admin = false;
+      sessionStorage.removeItem('adm');
+      applyMode();
+      toast('잠금되었습니다');
+    }
+    function applyMode() {
+      const btn = document.getElementById('lock-btn');
+      const ban = document.getElementById('admin-banner');
+      document.getElementById('llbl').textContent = admin ? '잠금' : '관리자 로그인';
+      btn.classList.toggle('admin', admin);
+      ban.classList.toggle('on', admin);
+      document.getElementById('licon').innerHTML = admin
+        ? '<path d="M18 8h-1V6A5 5 0 007 6v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3.1-9H8.9V6a3.1 3.1 0 016.2 0v2z"/>'
+        : '<path d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 00-1 1v13a1 1 0 001 1h16a1 1 0 001-1V9a1 1 0 00-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 110 4 2 2 0 010-4z"/>';
+      render();
+    }
 
-// ── Commit ──
-function commit(id, val) {
-  if (!admin) return;
-  const p = PROJ.find(x=>x.id===id);
-  prog[id] = Math.min(p.t, Math.max(0, parseInt(val)||0));
-  save();
-  updateKPI();
-  updateFooter();
-  // sync both table + card
-  refreshTblRow(p);
-  refreshCard(p);
-}
-function refreshTblRow(p) {
-  const cur = prog[p.id]||0; const pc = pct(p); const done = cur>=p.t;
-  const cc = C[p.f];
-  const el = document.getElementById(`tr-cur-${p.id}`);
-  const barEl = document.getElementById(`tr-bar-${p.id}`);
-  const pEl = document.getElementById(`tr-pct-${p.id}`);
-  const stEl = document.getElementById(`tr-st-${p.id}`);
-  if(el) { if(admin) el.value=cur>0?cur:''; else el.textContent=`${cur.toLocaleString()} ${p.u}`; }
-  if(barEl) barEl.style.width=pc.toFixed(1)+'%';
-  if(pEl)   { pEl.textContent=pc.toFixed(1)+'%'; pEl.style.color=done?'#00A682':cc.c; }
-  if(stEl)  stEl.innerHTML=done?'<span class="donebadge">완료</span>':'<span style="font-size:11px;color:var(--text-muted);">진행</span>';
-}
-function refreshCard(p) {
-  const cur=prog[p.id]||0; const pc=pct(p); const done=cur>=p.t;
-  const cc=C[p.f];
-  const bf=document.getElementById(`cd-bar-${p.id}`);
-  const ce=document.getElementById(`cd-cur-${p.id}`);
-  const pe=document.getElementById(`cd-pct-${p.id}`);
-  const ie=document.getElementById(`cd-inp-${p.id}`);
-  if(bf){bf.style.width=pc.toFixed(1)+'%';bf.style.background=done?'#00A682':cc.c;}
-  if(ce) ce.textContent=`추진 ${cur.toLocaleString()}${p.u}`;
-  if(pe){pe.textContent=pc.toFixed(1)+'%';pe.style.color=done?'#00A682':cc.c;}
-  if(ie && admin) ie.value=cur>0?cur:'';
-}
+    // ── KPI ──
+    function updateKPI() {
+      const done = PROJ.filter(p => (prog[p.id] || 0) >= p.t).length;
+      const avg = PROJ.reduce((s, p) => s + pct(p), 0) / PROJ.length;
+      const ent = PROJ.filter(p => (prog[p.id] || 0) > 0).length;
+      document.getElementById('kdone').innerHTML = `${done}<span>/ 13</span>`;
+      document.getElementById('kdsub').textContent = done === 13 ? '모든 사업 완료' : `${13 - done}개 사업 진행 중`;
+      document.getElementById('kpct').innerHTML = `${avg.toFixed(1)}<span>%</span>`;
+      document.getElementById('kpsub').textContent = `${ent}개 사업 실적 입력됨`;
+      document.getElementById('opct').textContent = avg.toFixed(1) + '%';
+      document.getElementById('obar').style.width = avg.toFixed(1) + '%';
+    }
+    function updateFooter() {
+      const tt = PROJ.reduce((s, p) => s + p.t, 0);
+      const tc = PROJ.reduce((s, p) => s + (prog[p.id] || 0), 0);
+      const av = PROJ.reduce((s, p) => s + pct(p), 0) / PROJ.length;
+      document.getElementById('ttgt').textContent = tt.toLocaleString();
+      document.getElementById('tcur').innerHTML = `<span style="font-size:13px;color:var(--accent);font-weight:600;">${tc.toLocaleString()}</span>`;
+      document.getElementById('tbar').style.width = av.toFixed(1) + '%';
+      document.getElementById('tpct').textContent = av.toFixed(1) + '%';
+    }
 
-// ── Render ──
-function render() {
-  // Table
-  const tb = document.getElementById('tbody');
-  tb.innerHTML = PROJ.map((p,i)=>{
-    const cc=C[p.f]; const cur=prog[p.id]||0; const pc=pct(p); const done=cur>=p.t;
-    const curCell = admin
-      ? `<div style="display:flex;align-items:center;gap:6px;">
+    // ── Commit ──
+    function commit(id, val) {
+      if (!admin) return;
+      const p = PROJ.find(x => x.id === id);
+      prog[id] = Math.min(p.t, Math.max(0, parseInt(val) || 0));
+      save();
+      updateKPI();
+      updateFooter();
+      // sync both table + card
+      refreshTblRow(p);
+      refreshCard(p);
+    }
+    function refreshTblRow(p) {
+      const cur = prog[p.id] || 0; const pc = pct(p); const done = cur >= p.t;
+      const cc = C[p.f];
+      const el = document.getElementById(`tr-cur-${p.id}`);
+      const barEl = document.getElementById(`tr-bar-${p.id}`);
+      const pEl = document.getElementById(`tr-pct-${p.id}`);
+      const stEl = document.getElementById(`tr-st-${p.id}`);
+      if (el) { if (admin) el.value = cur > 0 ? cur : ''; else el.textContent = `${cur.toLocaleString()} ${p.u}`; }
+      if (barEl) barEl.style.width = pc.toFixed(1) + '%';
+      if (pEl) { pEl.textContent = pc.toFixed(1) + '%'; pEl.style.color = done ? '#00C8A0' : cc.c; }
+      if (stEl) stEl.innerHTML = done ? '<span class="donebadge">완료</span>' : '<span style="font-size:11px;color:var(--text-muted);">진행</span>';
+    }
+    function refreshCard(p) {
+      const cur = prog[p.id] || 0; const pc = pct(p); const done = cur >= p.t;
+      const cc = C[p.f];
+      const bf = document.getElementById(`cd-bar-${p.id}`);
+      const ce = document.getElementById(`cd-cur-${p.id}`);
+      const pe = document.getElementById(`cd-pct-${p.id}`);
+      const ie = document.getElementById(`cd-inp-${p.id}`);
+      if (bf) { bf.style.width = pc.toFixed(1) + '%'; bf.style.background = done ? '#00C8A0' : cc.c; }
+      if (ce) ce.textContent = `추진 ${cur.toLocaleString()}${p.u}`;
+      if (pe) { pe.textContent = pc.toFixed(1) + '%'; pe.style.color = done ? '#00C8A0' : cc.c; }
+      if (ie && admin) ie.value = cur > 0 ? cur : '';
+    }
+
+    // ── Render ──
+    function render() {
+      // Table
+      const tb = document.getElementById('tbody');
+      tb.innerHTML = PROJ.map((p, i) => {
+        const cc = C[p.f]; const cur = prog[p.id] || 0; const pc = pct(p); const done = cur >= p.t;
+        const curCell = admin
+          ? `<div style="display:flex;align-items:center;gap:6px;">
            <input class="tblinput" type="number" id="tr-cur-${p.id}"
-             min="0" max="${p.t}" placeholder="0" value="${cur>0?cur:''}"
+             min="0" max="${p.t}" placeholder="0" value="${cur > 0 ? cur : ''}"
              onchange="commit(${p.id},this.value)"
              onkeydown="if(event.key==='Enter')this.blur()">
            <span class="unit">${p.u}</span>
          </div>`
-      : `<span id="tr-cur-${p.id}" style="font-variant-numeric:tabular-nums;font-weight:500;">${cur.toLocaleString()} ${p.u}</span>`;
-    return `<tr>
-      <td style="color:var(--text-muted);font-size:12px;">${i+1}</td>
+          : `<span id="tr-cur-${p.id}" style="font-variant-numeric:tabular-nums;font-weight:500;">${cur.toLocaleString()} ${p.u}</span>`;
+        return `<tr>
+      <td style="color:var(--text-muted);font-size:12px;">${i + 1}</td>
       <td><span class="fbadge" style="background:${cc.bg};color:${cc.c};border:1px solid ${cc.bd};">${p.f}</span></td>
       <td style="font-weight:500;">${p.name}
         <div style="font-size:11px;color:var(--text-muted);font-weight:400;margin-top:2px;">${p.desc}</div></td>
@@ -525,38 +1191,38 @@ function render() {
       <td>${curCell}</td>
       <td>
         <div class="tbwrap">
-          <div class="tbtrack"><div class="tbfill" id="tr-bar-${p.id}" style="width:${pc.toFixed(1)}%;background:${done?'#00A682':cc.c};"></div></div>
-          <span class="tpct" id="tr-pct-${p.id}" style="color:${done?'#00A682':cc.c};">${pc.toFixed(1)}%</span>
+          <div class="tbtrack"><div class="tbfill" id="tr-bar-${p.id}" style="width:${pc.toFixed(1)}%;background:${done ? '#00C8A0' : cc.c};"></div></div>
+          <span class="tpct" id="tr-pct-${p.id}" style="color:${done ? '#00C8A0' : cc.c};">${pc.toFixed(1)}%</span>
         </div>
       </td>
-      <td id="tr-st-${p.id}">${done?'<span class="donebadge">완료</span>':'<span style="font-size:11px;color:var(--text-muted);">진행</span>'}</td>
+      <td id="tr-st-${p.id}">${done ? '<span class="donebadge">완료</span>' : '<span style="font-size:11px;color:var(--text-muted);">진행</span>'}</td>
     </tr>`;
-  }).join('');
+      }).join('');
 
-  // Dashboard
-  const dash = document.getElementById('dash');
-  dash.innerHTML = FIELDS.map(field=>{
-    const fps = PROJ.filter(p=>p.f===field);
-    const cc = C[field];
-    return `<div class="fsec">
+      // Dashboard
+      const dash = document.getElementById('dash');
+      dash.innerHTML = FIELDS.map(field => {
+        const fps = PROJ.filter(p => p.f === field);
+        const cc = C[field];
+        return `<div class="fsec">
       <div class="fhdr">
         <span class="flbl" style="background:${cc.bg};color:${cc.c};border:1px solid ${cc.bd};">${field}</span>
         <span style="font-size:12px;color:var(--text-muted);">${fps.length}개 사업</span>
       </div>
       <div class="fcards">
-        ${fps.map((p,di)=>{
-          const cur=prog[p.id]||0; const pc=pct(p); const done=cur>=p.t;
+        ${fps.map((p, di) => {
+          const cur = prog[p.id] || 0; const pc = pct(p); const done = cur >= p.t;
           const inRow = admin
             ? `<div class="pinrow">
                  <input class="pinput" type="number" id="cd-inp-${p.id}"
-                   min="0" max="${p.t}" placeholder="추진건수 입력" value="${cur>0?cur:''}"
+                   min="0" max="${p.t}" placeholder="추진건수 입력" value="${cur > 0 ? cur : ''}"
                    onchange="commit(${p.id},this.value)"
                    onkeydown="if(event.key==='Enter')this.blur()">
                  <span class="unit">${p.u}</span>
                  <button class="pbtn" onclick="commit(${p.id},document.getElementById('cd-inp-${p.id}').value)">저장</button>
                </div>`
             : '';
-          return `<div class="pcard" style="--fc:${cc.c};animation-delay:${di*.05}s">
+          return `<div class="pcard" style="--fc:${cc.c};animation-delay:${di * .05}s">
             <div class="ptop">
               <div>
                 <div class="pname">${p.name}</div>
@@ -564,16 +1230,16 @@ function render() {
               </div>
               <div class="ptgt">
                 <div class="ptgt-v">목표 <strong>${p.t.toLocaleString()}${p.u}</strong></div>
-                <div class="pbgt">${(p.b/1000).toFixed(1)}백만원</div>
+                <div class="pbgt">${(p.b / 1000).toFixed(1)}백만원</div>
               </div>
             </div>
             <div class="pbarwrap">
               <div class="pbartrack">
-                <div class="pbarfill" id="cd-bar-${p.id}" style="width:${pc.toFixed(1)}%;background:${done?'#00A682':cc.c};"></div>
+                <div class="pbarfill" id="cd-bar-${p.id}" style="width:${pc.toFixed(1)}%;background:${done ? '#00C8A0' : cc.c};"></div>
               </div>
               <div class="pbarmeta">
                 <span class="pcur" id="cd-cur-${p.id}">추진 ${cur.toLocaleString()}${p.u}</span>
-                <span class="ppct" id="cd-pct-${p.id}" style="color:${done?'#00A682':cc.c};">${pc.toFixed(1)}%</span>
+                <span class="ppct" id="cd-pct-${p.id}" style="color:${done ? '#00C8A0' : cc.c};">${pc.toFixed(1)}%</span>
               </div>
             </div>
             ${inRow}
@@ -581,26 +1247,31 @@ function render() {
         }).join('')}
       </div>
     </div>`;
-  }).join('');
+      }).join('');
 
-  updateKPI();
-  updateFooter();
-}
+      updateKPI();
+      updateFooter();
+    }
 
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('on');
-  setTimeout(()=>t.classList.remove('on'), 1800);
-}
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('on');
+      setTimeout(() => t.classList.remove('on'), 1800);
+    }
 
-// ── Init ──
-load();
-if (sessionStorage.getItem('adm')==='1') admin = true;
-const ds = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
-document.getElementById('dstr').textContent = ds + ' 기준';
-document.getElementById('fdate').textContent = ds;
-applyMode();
-</script>
+    // ── Init ──
+    (async function initApp() {
+      if (sessionStorage.getItem('adm') === '1') admin = true;
+      const ds = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+      document.getElementById('dstr').textContent = ds + ' 기준';
+      document.getElementById('fdate').textContent = ds;
+
+      // DB에서 데이터가 도착할 때까지 기다렸다가 화면 렌더링
+      await load();
+      applyMode();
+    })();
+  </script>
 </body>
+
 </html>
