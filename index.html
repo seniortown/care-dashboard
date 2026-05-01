@@ -1156,7 +1156,7 @@
     function commit(id, val) {
       if (!admin) return;
       const p = PROJ.find(x => x.id === id);
-      prog[id] = Math.min(p.t, Math.max(0, parseInt(val) || 0));
+      prog[id] = Math.max(0, parseInt(val) || 0);
       save();
       updateKPI();
       updateFooter();
@@ -1198,7 +1198,7 @@
         const curCell = admin
           ? `<div style="display:flex;align-items:center;gap:6px;">
            <input class="tblinput" type="number" id="tr-cur-${p.id}"
-             min="0" max="${p.t}" placeholder="0" value="${cur > 0 ? cur : ''}"
+             min="0" placeholder="0" value="${cur > 0 ? cur : ''}"
              onchange="commit(${p.id},this.value)"
              onkeydown="if(event.key==='Enter')this.blur()">
            <span class="unit">${p.u2 || p.u}</span>
@@ -1237,10 +1237,10 @@
           const inRow = admin
             ? `<div class="pinrow">
                  <input class="pinput" type="number" id="cd-inp-${p.id}"
-                   min="0" max="${p.t}" placeholder="추진실적 입력" value="${cur > 0 ? cur : ''}"
+                   min="0" placeholder="추진실적 입력" value="${cur > 0 ? cur : ''}"
                    onchange="commit(${p.id},this.value)"
                    onkeydown="if(event.key==='Enter')this.blur()">
-                 <span class="unit">${p.u}</span>
+                 <span class="unit">${p.u2 || p.u}</span>
                  <button class="pbtn" onclick="commit(${p.id},document.getElementById('cd-inp-${p.id}').value)">저장</button>
                </div>`
             : '';
