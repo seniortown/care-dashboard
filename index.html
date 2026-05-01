@@ -1037,11 +1037,11 @@
     // ── Supabase Setup ──
     const supabaseUrl = 'https://guihcdtahtwsnhvbcjff.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1aWhjZHRhaHR3c25odmJjamZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MDEzOTgsImV4cCI6MjA5MjE3NzM5OH0.dwGmSa1689dyO_zSpduA3TtALPmaimMywgUm6EQq5F0';
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     async function load() {
       try {
-        const { data, error } = await supabase.from('dashboard_data').select('data').eq('id', 1).single();
+        const { data, error } = await supabaseClient.from('dashboard_data').select('data').eq('id', 1).single();
         if (data && data.data) {
           prog = data.data;
         } else {
@@ -1054,7 +1054,7 @@
 
     async function save() {
       try {
-        const { error } = await supabase.from('dashboard_data').update({ data: prog }).eq('id', 1);
+        const { error } = await supabaseClient.from('dashboard_data').update({ data: prog }).eq('id', 1);
         if (!error) toast('저장되었습니다');
         else { console.error(error); toast('DB에 저장하지 못했습니다. 설정을 확인해주세요.'); }
       } catch (e) { console.error("저장 에러:", e); }
