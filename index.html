@@ -1033,9 +1033,9 @@
     const PROJ = [
       { id: 1, f: "보건의료", name: "방문한방돌봄", desc: "65세 이상 의료취약계층 한의사 방문진료", t: 180, u: "명", b: 70000 },
       { id: 2, f: "보건의료", name: "퇴원환자 연계지원", desc: "퇴원환자 지역사회 연계 수당지원(5만원)", t: 300, u: "명", b: 15000 },
-      { id: 3, f: "보건의료", name: "방문돌봄 주치의", desc: "재택의료센터 물리치료사 인건비 지원", t: 3, u: "개소", b: 140000, u2: "명" },
+      { id: 3, f: "보건의료", name: "방문돌봄 주치의", desc: "재택의료센터 물리치료사 인건비 지원", t: 3, u: "개소", b: 140000, u2: "명", noPct: true },
       { id: 4, f: "보건의료", name: "방문약물관리", desc: "약사 가정 방문 복약지도 및 상담", t: 200, u: "명", b: 170000 },
-      { id: 5, f: "건강관리", name: "통증완화케어교육", desc: "만성 통증대상자 집단·개별 프로그램", t: 2, u: "개소", b: 50000, u2: "명" },
+      { id: 5, f: "건강관리", name: "통증완화케어교육", desc: "만성 통증대상자 집단·개별 프로그램", t: 2, u: "개소", b: 50000, u2: "명", noPct: true },
       { id: 6, f: "장기요양", name: "간호요양 원스톱패키지", desc: "방문간호·요양·목욕 3대 재가서비스", t: 150, u: "명", b: 188000 },
       { id: 7, f: "일상돌봄", name: "화성형 통합돌봄지원", desc: "화성형 돌봄패키지 지원(1인 60만원)", t: 116, u: "명", b: 70000 },
       { id: 8, f: "일상돌봄", name: "통합재가서비스", desc: "4대 화성시 돌봄패키지(1인 100만원)", t: 170, u: "명", b: 170000 },
@@ -1132,20 +1132,22 @@
 
     // ── KPI ──
     function updateKPI() {
-      const done = PROJ.filter(p => (prog[p.id] || 0) >= p.t).length;
-      const avg = PROJ.reduce((s, p) => s + pct(p), 0) / PROJ.length;
+      const valid = PROJ.filter(p => !p.noPct);
+      const done = valid.filter(p => (prog[p.id] || 0) >= p.t).length;
+      const avg = valid.reduce((s, p) => s + pct(p), 0) / valid.length;
       const ent = PROJ.filter(p => (prog[p.id] || 0) > 0).length;
-      document.getElementById('kdone').innerHTML = `${done}<span>/ 13</span>`;
-      document.getElementById('kdsub').textContent = done === 13 ? '모든 사업 완료' : `${13 - done}개 사업 진행 중`;
+      document.getElementById('kdone').innerHTML = `${done}<span>/ ${valid.length}</span>`;
+      document.getElementById('kdsub').textContent = done === valid.length ? '모든 사업 완료' : `${valid.length - done}개 사업 진행 중`;
       document.getElementById('kpct').innerHTML = `${avg.toFixed(1)}<span>%</span>`;
       document.getElementById('kpsub').textContent = `${ent}개 사업 실적 입력됨`;
       document.getElementById('opct').textContent = avg.toFixed(1) + '%';
       document.getElementById('obar').style.width = avg.toFixed(1) + '%';
     }
     function updateFooter() {
+      const valid = PROJ.filter(p => !p.noPct);
       const tt = PROJ.reduce((s, p) => s + p.t, 0);
       const tc = PROJ.reduce((s, p) => s + (prog[p.id] || 0), 0);
-      const av = PROJ.reduce((s, p) => s + pct(p), 0) / PROJ.length;
+      const av = valid.reduce((s, p) => s + pct(p), 0) / valid.length;
       document.getElementById('ttgt').textContent = tt.toLocaleString();
       document.getElementById('tcur').innerHTML = `<span style="font-size:13px;color:var(--accent);font-weight:600;">${tc.toLocaleString()}</span>`;
       document.getElementById('tbar').style.width = av.toFixed(1) + '%';
@@ -1174,7 +1176,7 @@
       if (el) { if (admin) el.value = cur > 0 ? cur : ''; else el.textContent = `${cur.toLocaleString()} ${p.u2 || p.u}`; }
       if (barEl) barEl.style.width = pc.toFixed(1) + '%';
       if (pEl) { pEl.textContent = pc.toFixed(1) + '%'; pEl.style.color = done ? '#00A682' : cc.c; }
-      if (stEl) stEl.innerHTML = done ? '<span class="donebadge">완료</span>' : '<span style="font-size:11px;color:var(--text-muted);">진행</span>';
+      if (stEl) stEl.innerHTML = p.noPct ? '<span style="font-size:11px;color:var(--text-muted);">-</span>' : (done ? '<span class="donebadge">완료</span>' : '<span style="font-size:11px;color:var(--text-muted);">진행</span>');
     }
     function refreshCard(p) {
       const cur = prog[p.id] || 0; const pc = pct(p); const done = cur >= p.t;
@@ -1212,12 +1214,13 @@
       <td class="r">${p.t.toLocaleString()} <span style="font-size:11px;">${p.u}</span></td>
       <td>${curCell}</td>
       <td>
+        ${p.noPct ? '<span style="color:var(--text-muted);font-size:12px;margin-left:8px;">-</span>' : `
         <div class="tbwrap">
           <div class="tbtrack"><div class="tbfill" id="tr-bar-${p.id}" style="width:${pc.toFixed(1)}%;background:${done ? '#00A682' : cc.c};"></div></div>
           <span class="tpct" id="tr-pct-${p.id}" style="color:${done ? '#00A682' : cc.c};">${pc.toFixed(1)}%</span>
-        </div>
+        </div>`}
       </td>
-      <td id="tr-st-${p.id}">${done ? '<span class="donebadge">완료</span>' : '<span style="font-size:11px;color:var(--text-muted);">진행</span>'}</td>
+      <td id="tr-st-${p.id}">${p.noPct ? '<span style="font-size:11px;color:var(--text-muted);">-</span>' : (done ? '<span class="donebadge">완료</span>' : '<span style="font-size:11px;color:var(--text-muted);">진행</span>')}</td>
     </tr>`;
       }).join('');
 
@@ -1256,12 +1259,13 @@
               </div>
             </div>
             <div class="pbarwrap">
+              ${p.noPct ? '' : `
               <div class="pbartrack">
                 <div class="pbarfill" id="cd-bar-${p.id}" style="width:${pc.toFixed(1)}%;background:${done ? '#00A682' : cc.c};"></div>
-              </div>
+              </div>`}
               <div class="pbarmeta">
                 <span class="pcur" id="cd-cur-${p.id}">추진 ${cur.toLocaleString()}${p.u2 || p.u}</span>
-                <span class="ppct" id="cd-pct-${p.id}" style="color:${done ? '#00A682' : cc.c};">${pc.toFixed(1)}%</span>
+                ${p.noPct ? '' : `<span class="ppct" id="cd-pct-${p.id}" style="color:${done ? '#00A682' : cc.c};">${pc.toFixed(1)}%</span>`}
               </div>
             </div>
             ${inRow}
